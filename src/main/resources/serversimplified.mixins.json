@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "tech.dttp.serversimplified.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinPlayerManager",
+    "MixinServerPlayNetworkHandler",
+    "MixinBanCommand",
+    "MixinKickCommand"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

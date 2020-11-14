@@ -1,37 +1,36 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "serversimplified",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Server Simplified",
+  "description": "Adds simple commands for server owners. Originally developed by zeroeightysix, yitzy299 has continued development",
   "authors": [
-    "Me!"
+    "yitzy299", "zeroeightysix"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/yitzy299/server-simplified/releases",
+    "sources": "https://github.com/yitzy299/server-simplified/"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "GPL-3.0",
+  "icon": "assets/serversimplified/icon.png",
 
-  "environment": "*",
+  "environment": "*", 
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "tech.dttp.serversimplified.ServerSimplified"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "serversimplified.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "fabric": "*",
-    "minecraft": "1.16.x"
+    "fabricloader": ">=0.10.6",
+    "fabric": ">=0.25.1"
   },
   "suggests": {
-    "another-mod": "*"
+    "another-mod": "blocklogger"
   }
 }
