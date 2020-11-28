@@ -66,7 +66,7 @@ public class MuteCommand {
         Duration muteDuration = null;
         if (time != null) {
             try {
-                muteTime = Instant.now().plus(muteDuration = parseTime(time.toString())).toEpochMilli();
+                muteTime = Instant.now().plus(muteDuration = parseTime(time.asString())).toEpochMilli();
             } catch (NumberFormatException e) {
                 context.getSource().sendError(new LiteralText("Failed to parse time. Input must be numerical!"));
                 return 1;

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "serversimplified",
-  "version": "${version}",
+  "version": "1.0.6",
 
   "name": "Server Simplified",
   "description": "Adds simple commands for server owners. Originally developed by zeroeightysix, yitzy299 has continued development",
@@ -16,7 +16,7 @@
   "license": "GPL-3.0",
   "icon": "assets/serversimplified/icon.png",
 
-  "environment": "*", 
+  "environment": "server", 
   "entrypoints": {
     "main": [
       "tech.dttp.serversimplified.ServerSimplified"

@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import static tech.dttp.serversimplified.Util.isHuman;
+import static tech.dttp.serversimplified.Utils.isHuman;
 
 public abstract class PlayerActionCommand {
 

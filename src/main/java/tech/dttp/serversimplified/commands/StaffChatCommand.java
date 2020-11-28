@@ -2,24 +2,20 @@ package tech.dttp.serversimplified.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import tech.dttp.serversimplified.Permissions;
 import tech.dttp.serversimplified.ServerSimplified;
-import net.minecraft.server.command.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.command.argument.MessageArgumentType;
-import net.minecraft.network.MessageType;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.text.TranslatableText;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static tech.dttp.serversimplified.Util.isHuman;
+import static tech.dttp.serversimplified.Utils.isHuman;
 
 public class StaffChatCommand {
 
@@ -48,9 +44,6 @@ public class StaffChatCommand {
                             staffChat.add(uuid);
                             added = true;
                         }
-                    } else {
-                        consoleInSChat = !consoleInSChat;
-                        added = consoleInSChat;
                     }
 
                     context.getSource().sendFeedback(new LiteralText(added ? "Moved into staff chat." : "Moved into global chat."), false);

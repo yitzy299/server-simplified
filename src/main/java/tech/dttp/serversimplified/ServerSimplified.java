@@ -3,12 +3,12 @@ package tech.dttp.serversimplified;
 import tech.dttp.serversimplified.commands.MuteCommand;
 import tech.dttp.serversimplified.commands.PermissionCommand;
 import tech.dttp.serversimplified.commands.PlayerActionCommand;
-import tech.dttp.serversimplified.commands.StaffChatCommand;
+import tech.dttp.serversimplified.commands.SeekInventoryCommand;
+import tech.dttp.serversimplified.commands.ServerMuteCommand;
 import tech.dttp.serversimplified.commands.VanishCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping;
 import net.minecraft.entity.effect.StatusEffects;
 
 import java.io.IOException;
@@ -24,9 +24,10 @@ public class ServerSimplified implements ModInitializer {
             MuteCommand.register(dispatcher);
             PermissionCommand.register(dispatcher);
             PlayerActionCommand.register(dispatcher, VanishCommand.class);
-            StaffChatCommand.register(dispatcher);
+            ServerMuteCommand.register(dispatcher);
+            SeekInventoryCommand.register(dispatcher);
         });
-        ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
+        ServerLifecycleEvents.SERVER_STOPPING.register((server) -> {
             ServerSimplified.shutdown();
         });
     }

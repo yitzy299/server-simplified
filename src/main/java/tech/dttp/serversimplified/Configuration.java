@@ -38,7 +38,7 @@ public class Configuration {
             MuteCommand.fromJson(muted);
             return new Configuration(path, array);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Failed to read JSON");
             return new Configuration(path);
         }
     }

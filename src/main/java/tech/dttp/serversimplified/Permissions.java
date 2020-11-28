@@ -1,12 +1,11 @@
 package tech.dttp.serversimplified;
 
 import com.google.gson.*;
-import net.minecraft.entity.Entity;
 import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.*;
 
-import static tech.dttp.serversimplified.Util.isHuman;
+import static tech.dttp.serversimplified.Utils.isHuman;
 
 public class Permissions {
 

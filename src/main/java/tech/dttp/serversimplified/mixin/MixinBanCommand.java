@@ -5,7 +5,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import tech.dttp.serversimplified.ServerSimplified;
-import net.minecraft.server.command.KickCommand;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.dedicated.command.BanCommand;
 import org.spongepowered.asm.mixin.Mixin;

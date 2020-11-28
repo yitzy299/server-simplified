@@ -25,7 +25,7 @@ public class PermissionCommand {
                                                 .then(
                                                         CommandManager.argument("permission", MessageArgumentType.message())
                                                                 .executes(context -> {
-                                                                    String permission = MessageArgumentType.getMessage(context, "permission").toString();
+                                                                    String permission = MessageArgumentType.getMessage(context, "permission").asString();
                                                                     ServerPlayerEntity playerEntity = EntityArgumentType.getPlayers(context, "target").iterator().next();
                                                                     ServerSimplified.getConfiguration().getPermissions().addPermission(playerEntity.getUuidAsString(), permission);
                                                                     context.getSource().sendFeedback(new LiteralText("Added permission " + permission + " to ").append(playerEntity.getDisplayName()), false);
@@ -42,7 +42,7 @@ public class PermissionCommand {
                                                 .then(
                                                         CommandManager.argument("permission", MessageArgumentType.message())
                                                                 .executes(context -> {
-                                                                    String permission = MessageArgumentType.getMessage(context, "permission").toString();
+                                                                    String permission = MessageArgumentType.getMessage(context, "permission").asString();
                                                                     ServerPlayerEntity playerEntity = EntityArgumentType.getPlayers(context, "target").iterator().next();
                                                                     ServerSimplified.getConfiguration().getPermissions().removePermission(playerEntity.getUuidAsString(), permission);
                                                                     context.getSource().sendFeedback(new LiteralText("Removed permission " + permission + " from ").append(playerEntity.getDisplayName()), false);
