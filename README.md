@@ -7,11 +7,10 @@ Originally developed by zeroeightysix, I (yitzy299) have continued updating the 
 The original code for Server Simplified can be found at https://github.com/zeroeightysix/server-simplified
 
 ## Commands
-`/feed [<target>]` Restores players' health. Will target yourself if no target is specified.   
-`/heal [<target>]` Restore players' hunger. Will target yourself if no target is specified.  
+`/servermute` Mutes all chat and commands except for those with permission level 2+. Custom duration will be coming soon
 `/mute <target> [<time>]` Mutes players. See [this section](#mute-time) for the formatting of `time`  
 `/unmute <target>` Unmutes players.  
-`/seekinv <target>` Opens the specified player's inventory.  
+[Depreciated, use inv-view instead]`/seekinv <target>` Opens the specified player's inventory.  
 `/staffchat [<message>]` Toggle, or send a message to, staff chat. See [staff chat](#staff-chat)  
 `/vanish [<target>]` Vanishes or appears players. Will target yourself if no target is specified.  
 `/permission <target> [add|remove] [<permission>]` Lists, adds and removes permissions from players. See [permissions](#permissions)
@@ -45,5 +44,5 @@ Add the `ban` permission to allow a player to use vanilla's `ban` command
 
 ### Examples of `/permission`
 List permissions of Dinnerbone: `/permission Dinnerbone`  
-Add `heal` to Notch: `/permission Notch add heal`  
-Remove `feed` from jeb_: `/permission jeb_ remove feed`  
+Add `vanish` to Notch: `/permission Notch add vanish`  
+Remove `mute` from jeb_: `/permission jeb_ remove mute`  
