@@ -10,6 +10,9 @@ import net.minecraft.command.argument.MessageArgumentType;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashSet;
@@ -31,7 +34,7 @@ public class StaffChatCommand {
                                         || commandSource.hasPermissionLevel(2))
                 .then(CommandManager.argument("message", MessageArgumentType.message())
                         .executes(context -> {
-                            sendToStaffChat(generateStaffChatMessage(isHuman(context.getSource()) ? context.getSource().getEntity().getDisplayName().toString() : "Console", MessageArgumentType.getMessage(context, "message").toString()), context.getSource().getMinecraftServer());
+                            sendToStaffChat(generateStaffChatMessage(isHuman(context.getSource()) ? context.getSource().getEntity().getDisplayName().asString() : "Console", MessageArgumentType.getMessage(context, "message").asString()), context.getSource().getMinecraftServer());
                             return 1;
                         }))
                 .executes(context -> {
@@ -56,7 +59,8 @@ public class StaffChatCommand {
     public static Text generateStaffChatMessage(String name, String message) {
         message = StringUtils.normalizeSpace(message);
         Text originalMessage = new TranslatableText("chat.type.text", new Object[]{name, message});
-        return new LiteralText("[SC] ").append(originalMessage);
+        Text newMessage = new LiteralText("[SC] ").formatted(Formatting.GOLD).append(originalMessage);
+        return newMessage;
     }
 
     public static boolean isInStaffChat(String uuid) {
@@ -68,7 +72,7 @@ public class StaffChatCommand {
             if (ServerSimplified.getConfiguration().getPermissions().hasPermission(serverPlayerEntity.getUuidAsString(), "staffchat")
                     || ServerSimplified.getConfiguration().getPermissions().hasPermission(serverPlayerEntity.getUuidAsString(), "staffchat.view")
                     || serverPlayerEntity.hasPermissionLevel(2)) {
-                serverPlayerEntity.sendMessage(message, true);
+                serverPlayerEntity.sendSystemMessage(message, Util.NIL_UUID);
             }
         });
     }

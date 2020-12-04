@@ -29,7 +29,7 @@ public class MixinServerPlayNetworkHandler {
     @Inject(method = "onGameMessage", at = @At("HEAD"), cancellable = true)
     public void broadcastChatMessage(ChatMessageC2SPacket packet, CallbackInfo info) {
         if (MuteCommand.isMuted(player.getUuidAsString())&&!Utils.hasPermission(player, "mute")) {
-            player.sendSystemMessage(new LiteralText("You were muted! Could not send message. Contact a moderator if you feel this is a mistake"), Util.NIL_UUID);
+            player.sendSystemMessage(new LiteralText("You were muted! Could not send message, contact a moderator if you feel this is a mistake"), Util.NIL_UUID);
             info.cancel();
         } 
         else if(ServerMuteCommand.isMuted()&&!Utils.hasPermission(player, "servermute")){
@@ -38,9 +38,9 @@ public class MixinServerPlayNetworkHandler {
             player.sendSystemMessage(serverIsMuted, Util.NIL_UUID);
             info.cancel();
         }
-        else if (StaffChatCommand.isInStaffChat(player.getUuidAsString())) {
+        else if (StaffChatCommand.isInStaffChat(player.getUuidAsString())&&!packet.getChatMessage().startsWith("/")) {
             String message = packet.getChatMessage();
-            StaffChatCommand.sendToStaffChat(StaffChatCommand.generateStaffChatMessage(player.getDisplayName().toString(), message), server);
+            StaffChatCommand.sendToStaffChat(StaffChatCommand.generateStaffChatMessage(player.getDisplayName().asString(), message), server);
             info.cancel();
         }
     }
