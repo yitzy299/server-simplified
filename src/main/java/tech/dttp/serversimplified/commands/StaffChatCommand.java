@@ -3,6 +3,7 @@ package tech.dttp.serversimplified.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import tech.dttp.serversimplified.ServerSimplified;
+import tech.dttp.serversimplified.Utils;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -73,6 +74,7 @@ public class StaffChatCommand {
                     || ServerSimplified.getConfiguration().getPermissions().hasPermission(serverPlayerEntity.getUuidAsString(), "staffchat.view")
                     || serverPlayerEntity.hasPermissionLevel(2)) {
                 serverPlayerEntity.sendSystemMessage(message, Util.NIL_UUID);
+                Utils.log(message.getString());
             }
         });
     }

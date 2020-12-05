@@ -3,7 +3,6 @@ package tech.dttp.serversimplified;
 import tech.dttp.serversimplified.commands.MuteCommand;
 import tech.dttp.serversimplified.commands.PermissionCommand;
 import tech.dttp.serversimplified.commands.PlayerActionCommand;
-import tech.dttp.serversimplified.commands.SeekInventoryCommand;
 import tech.dttp.serversimplified.commands.ServerMuteCommand;
 import tech.dttp.serversimplified.commands.StaffChatCommand;
 import tech.dttp.serversimplified.commands.VanishCommand;
@@ -15,7 +14,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import java.io.IOException;
 
 public class ServerSimplified implements ModInitializer {
-
     private static Configuration configuration;
 
     @Override
@@ -47,5 +45,4 @@ public class ServerSimplified implements ModInitializer {
     public static Configuration getConfiguration() {
         return configuration;
     }
-
 }
