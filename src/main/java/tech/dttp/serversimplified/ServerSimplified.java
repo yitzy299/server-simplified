@@ -18,10 +18,10 @@ public class ServerSimplified implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ServerSimplified.configuration = Configuration.load();
+        //ServerSimplified.configuration = Configuration.load();
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             MuteCommand.register(dispatcher);
-            PermissionCommand.register(dispatcher);
+            //PermissionCommand.register(dispatcher);
             PlayerActionCommand.register(dispatcher, VanishCommand.class);
             ServerMuteCommand.register(dispatcher);
             StaffChatCommand.register(dispatcher);
@@ -32,13 +32,6 @@ public class ServerSimplified implements ModInitializer {
     }
 
     public static void shutdown() {
-        try {
-            configuration.save();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Server Simplified: couldn't save configuration!");
-        }
-
         VanishCommand.getVanished().forEach(entity -> entity.removeStatusEffect(StatusEffects.INVISIBILITY));
     }
 
