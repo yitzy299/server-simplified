@@ -2,6 +2,8 @@ package tech.dttp.serversimplified.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
 import tech.dttp.serversimplified.ServerSimplified;
 import net.minecraft.command.argument.*;
 import net.minecraft.command.argument.MessageArgumentType;
@@ -16,8 +18,15 @@ import java.util.Set;
 public class PermissionCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        LiteralArgumentBuilder<ServerCommandSource> builder = CommandManager
-                .literal("permission")
+        LiteralArgumentBuilder<ServerCommandSource> builder = CommandManager.literal("permission").requires(scs -> {
+            try {
+                return scs.hasPermissionLevel(3) || ServerSimplified.getConfiguration().getPermissions()
+                        .hasPermission(scs.getPlayer().getUuidAsString(), "permission");
+            } catch (CommandSyntaxException e) {
+                e.printStackTrace();
+                return false;
+            }
+        })
                 .then(
                         CommandManager.argument("target", EntityArgumentType.player())
                                 .then(

@@ -38,7 +38,7 @@ public abstract class PlayerActionCommand {
                     .requires(
                             (commandSource) ->
                                     ServerSimplified.getConfiguration().getPermissions().checkPermissions(commandSource, name)
-                                            || commandSource.hasPermissionLevel(2))
+                                            || commandSource.hasPermissionLevel(3))
                     .then(
                             CommandManager.argument("target", EntityArgumentType.players())
                                     .executes((context) -> command.action(context, EntityArgumentType.getPlayers(context, "target")))

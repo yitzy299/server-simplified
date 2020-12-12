@@ -19,6 +19,11 @@ public class ServerMuteCommand {
         dispatcher.register(literal("servermute")
                 .requires(scs -> {
                     try {
+                        if (scs.getPlayer().hasPermissionLevel(3)) return true;
+                    } catch (CommandSyntaxException e1) {
+                        e1.printStackTrace();
+                    }
+                    try {
                         return Utils.hasPermission(scs.getPlayer(), "servermute");
                     } catch (CommandSyntaxException e) {
                         return false;

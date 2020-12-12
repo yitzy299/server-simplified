@@ -30,7 +30,7 @@ public class MuteCommand {
                 .requires(
                         (commandSource) ->
                                 ServerSimplified.getConfiguration().getPermissions().checkPermissions(commandSource, "mute")
-                                        || commandSource.hasPermissionLevel(2))
+                                        || commandSource.hasPermissionLevel(3))
                 .then(
                         CommandManager.argument("target", EntityArgumentType.players())
                                 .then(CommandManager.argument("time", MessageArgumentType.message())
