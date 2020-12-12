@@ -7,8 +7,7 @@
     "MixinPlayerManager",
     "MixinServerPlayNetworkHandler",
     "MixinBanCommand",
-    "MixinKickCommand",
-    "MixinPlayerListHeaderS2C"
+    "MixinKickCommand"
   ],
   "injectors": {
     "defaultRequire": 1

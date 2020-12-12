@@ -8,7 +8,6 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
-import tech.dttp.serversimplified.ServerSimplified;
 import tech.dttp.serversimplified.Utils;
 
 import static net.minecraft.server.command.CommandManager.literal;
@@ -18,15 +17,20 @@ public class ServerMuteCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(literal("servermute")
-                .requires(scs -> Utils.hasPermissionFromSource(scs, "servermute"))
+                .requires(scs -> {
+                    try {
+                        return Utils.hasPermission(scs.getPlayer(), "servermute");
+                    } catch (CommandSyntaxException e) {
+                        return false;
+                    }
+                })
                 .executes(scs -> setServerMute(scs)));
 
     }
 
     private static int setServerMute(CommandContext<ServerCommandSource> scs) {
         ServerMuteCommand.isServerMuted = !ServerMuteCommand.isServerMuted;
-        String message = String.format("%s %s","§3","Server mute is now set to: "+ServerMuteCommand.isServerMuted);
-        Text messageText = new LiteralText(message);
+        Text messageText = new LiteralText(isServerMuted ? "Muted the server":"Unmuted the server");
         try {
             scs.getSource().getPlayer().sendSystemMessage(messageText, Util.NIL_UUID);
         } catch (CommandSyntaxException e) {

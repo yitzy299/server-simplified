@@ -22,7 +22,6 @@ public class MixinBanCommand {
                         || ServerSimplified.getConfiguration().getPermissions()
                                 .hasPermission(((ServerCommandSource) o).getEntity().getUuidAsString(), "ban") == true;
             } catch (CommandSyntaxException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             return false;
