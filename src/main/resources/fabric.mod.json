@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "serversimplified",
-  "version": "1.0.6",
+  "version": "1.1.1",
 
   "name": "Server Simplified",
   "description": "Adds simple commands for server owners. Originally developed by zeroeightysix, yitzy299 has continued development",
@@ -26,7 +26,7 @@
     "serversimplified.mixins.json"
   ],
   "depends": {
-    "minecraft":">=1.16.2",
+    "minecraft":">=1.16",
     "fabricloader": ">=0.10.6",
     "fabric": ">=0.25.1"
   }

@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 public class Configuration {
 
-    public static final String PREFFERED_FILENAME = "serversimplified_configuration.json";
+    public static final String PREFFERED_FILENAME = "config/serversimplified.json";
 
     private final Path origin;
     Permissions permissions;
