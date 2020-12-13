@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Configuration {
 
     public static final String PREFFERED_FILENAME = "config/serversimplified.json";
-
+    private static Logger LOG = LogManager.getLogger();
     private final Path origin;
     Permissions permissions;
 
@@ -38,7 +40,7 @@ public class Configuration {
             MuteCommand.fromJson(muted);
             return new Configuration(path, array);
         } catch (Exception e) {
-            System.out.println("Failed to read JSON");
+            LOG.info("Failed to read JSON");
             return new Configuration(path);
         }
     }

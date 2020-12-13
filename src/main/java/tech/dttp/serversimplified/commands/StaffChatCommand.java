@@ -14,6 +14,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,10 +23,9 @@ import java.util.Set;
 import static tech.dttp.serversimplified.Utils.isHuman;
 
 public class StaffChatCommand {
-
     private static Set<String> staffChat = new HashSet<>();
     static boolean consoleInSChat = false;
-
+    private static Logger LOG = LogManager.getLogger();
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> builder = CommandManager
                 .literal("staffchat")
@@ -73,6 +74,7 @@ public class StaffChatCommand {
                     || ServerSimplified.getConfiguration().getPermissions().hasPermission(serverPlayerEntity.getUuidAsString(), "staffchat.view")
                     || serverPlayerEntity.hasPermissionLevel(2)) {
                 serverPlayerEntity.sendSystemMessage(message, Util.NIL_UUID);
+                LOG.info(message);
             }
         });
     }
