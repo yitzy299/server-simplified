@@ -63,9 +63,9 @@ public abstract class PlayerActionCommand {
 
         int listSize = players.size();
         if (listSize == 1) {
-            context.getSource().sendFeedback(new LiteralText(verb.apply(players) + " ").append(players.iterator().next().getName()/*.append(".")*/), false); // TODO: Option for setting this to true?
+            context.getSource().sendFeedback(new LiteralText(verb.apply(players) + " ").append(players.iterator().next().getName()/*.append(".")*/), true); // TODO: Option for setting this to true?
         } else {
-            context.getSource().sendFeedback(new LiteralText(verb.apply(players) + " " + listSize + " players."), false);
+            context.getSource().sendFeedback(new LiteralText(verb.apply(players) + " " + listSize + " players."), true);
         }
 
         return listSize;
