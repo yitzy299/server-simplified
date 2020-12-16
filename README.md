@@ -6,13 +6,42 @@ Originally developed by zeroeightysix, I (yitzy299) have continued updating the 
 ## Original source
 The original code for Server Simplified can be found at https://github.com/zeroeightysix/server-simplified
 
+## Setup
+When you close your server after first launching the mod, a a file called `config/serversimplified.json` will be created. This is your config file. See [config](#config). You may want to assign permissions. Be aware that giving a player staffchat permissions with player roles will not allow them to see staffchat messages, please use `/permission` for that.
+
+## Config
+
+The ServerSimplified permissions and mute config file is found in `config/serversimplified.json`. Here, you will find an array and an object, like this:
+
+`{
+  "permissions": [],
+  "muted": {}
+}`
+
+Here is an example configuration:
+
+`{
+  "permissions": [
+    {
+      "uuid": "3af33e5e-2dc6-4915-b34f-178f7b2f5e50",
+      "permissions": [
+        "servermute",
+        "staffchat.view"
+      ]
+    }
+  ],
+  "muted": {
+    "3af33e5e-2dc6-4915-b34f-178f7b2f5e50": 1608158666502
+  }
+}`
+
 ## Commands
 `/mute <target> [<time>]` Mutes players. See [this section](#mute-time) for the formatting of `time`  
 `/unmute <target>` Unmutes players.   
 `/staffchat [<message>]` Toggle, or send a message to, staff chat. See [staff chat](#staff-chat)  
 `/vanish [<target>]` Vanishes or appears players. Will target yourself if no target is specified.  
 `/permission <target> [add|remove] [<permission>]` Lists, adds and removes permissions from players. See [permissions](#permissions)
-`/servermute [<time>]` Mutes all players. See [this section](#mute-time) for the formatting of `time`
+`/servermute` Mutes all players.
 
 ## Mute time
 
