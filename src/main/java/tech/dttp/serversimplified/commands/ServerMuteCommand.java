@@ -36,11 +36,7 @@ public class ServerMuteCommand {
     private static int setServerMute(CommandContext<ServerCommandSource> scs) {
         ServerMuteCommand.isServerMuted = !ServerMuteCommand.isServerMuted;
         Text messageText = new LiteralText(isServerMuted ? "Muted the server":"Unmuted the server");
-        try {
-            scs.getSource().getPlayer().sendSystemMessage(messageText, Util.NIL_UUID);
-        } catch (CommandSyntaxException e) {
-            e.printStackTrace();
-        }
+        scs.getSource().sendFeedback(messageText, true);
         return 1;
     }
     public static Boolean isMuted() {

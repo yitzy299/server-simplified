@@ -20,7 +20,7 @@ public class MixinBanCommand {
             try {
                 return ((ServerCommandSource) o).getPlayer().hasPermissionLevel(3)
                         || ServerSimplified.getConfiguration().getPermissions()
-                                .hasPermission(((ServerCommandSource) o).getEntity().getUuidAsString(), "ban") == true;
+                                .hasPermission(((ServerCommandSource) o).getEntity().getUuidAsString(), "ban");
             } catch (CommandSyntaxException e) {
                 e.printStackTrace();
             }
