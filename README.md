@@ -7,14 +7,12 @@ Originally developed by zeroeightysix, I (yitzy299) have continued updating the 
 The original code for Server Simplified can be found at https://github.com/zeroeightysix/server-simplified
 
 ## Commands
-`/feed [<target>]` Restores players' health. Will target yourself if no target is specified.   
-`/heal [<target>]` Restore players' hunger. Will target yourself if no target is specified.  
 `/mute <target> [<time>]` Mutes players. See [this section](#mute-time) for the formatting of `time`  
-`/unmute <target>` Unmutes players.  
-`/seekinv <target>` Opens the specified player's inventory.  
+`/unmute <target>` Unmutes players.   
 `/staffchat [<message>]` Toggle, or send a message to, staff chat. See [staff chat](#staff-chat)  
 `/vanish [<target>]` Vanishes or appears players. Will target yourself if no target is specified.  
 `/permission <target> [add|remove] [<permission>]` Lists, adds and removes permissions from players. See [permissions](#permissions)
+`/servermute [<time>]` Mutes all players. See [this section](#mute-time) for the formatting of `time`
 
 ## Mute time
 
