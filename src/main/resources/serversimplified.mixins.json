@@ -5,9 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinPlayerManager",
-    "MixinServerPlayNetworkHandler",
-    "MixinBanCommand",
-    "MixinKickCommand"
+    "MixinServerPlayNetworkHandler"
   ],
   "injectors": {
     "defaultRequire": 1
