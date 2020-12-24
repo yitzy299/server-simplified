@@ -74,7 +74,7 @@ public class StaffChatCommand {
                     || ServerSimplified.getConfiguration().getPermissions().hasPermission(serverPlayerEntity.getUuidAsString(), "staffchat.view")
                     || serverPlayerEntity.hasPermissionLevel(2)) {
                 serverPlayerEntity.sendSystemMessage(message, Util.NIL_UUID);
-                LOG.info(message);
+                LOG.info(message.asString());
             }
         });
     }
