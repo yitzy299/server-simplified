@@ -1,12 +1,6 @@
 package tech.dttp.serversimplified;
 
-import tech.dttp.serversimplified.commands.MuteCommand;
-import tech.dttp.serversimplified.commands.PermissionCommand;
-import tech.dttp.serversimplified.commands.PlayerActionCommand;
-import tech.dttp.serversimplified.commands.RulesCommand;
-import tech.dttp.serversimplified.commands.ServerMuteCommand;
-import tech.dttp.serversimplified.commands.StaffChatCommand;
-import tech.dttp.serversimplified.commands.VanishCommand;
+import tech.dttp.serversimplified.commands.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -29,7 +23,6 @@ public class ServerSimplified implements ModInitializer {
             PlayerActionCommand.register(dispatcher, VanishCommand.class);
             ServerMuteCommand.register(dispatcher);
             StaffChatCommand.register(dispatcher);
-            RulesCommand.register(dispatcher);
         });
         ServerLifecycleEvents.SERVER_STOPPING.register((server) -> {
             ServerSimplified.shutdown();

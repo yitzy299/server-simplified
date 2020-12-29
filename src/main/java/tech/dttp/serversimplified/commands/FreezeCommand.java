@@ -18,6 +18,8 @@ import net.minecraft.text.Text;
 import net.minecraft.text.BaseText;
 
 public class FreezeCommand {
+    private static String frozen = "";
+
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> muteBuilder = CommandManager.literal("freeze")
         .requires(scs -> scs.hasPermissionLevel(3) || ServerSimplified.getConfiguration().getPermissions().checkPermissions(scs, "mute"))
@@ -25,8 +27,20 @@ public class FreezeCommand {
             .executes(scs -> freezePlayer(EntityArgumentType.getPlayer(scs, "player")))
         );
     }
-    public static int freezePlayer(ServerPlayerEntity player){
-            
-        return 1;
+    public static boolean isFrozen(ServerPlayerEntity player){
+        if(frozen.contains(player.getUuidAsString())){
+            return true;
+        }
+        return false;
+    }
+    private static int freezePlayer(ServerPlayerEntity player){
+        if(frozen.contains(player.getUuidAsString())){
+            frozen.replace(" "+player.getUuidAsString(), "");
+            return 2;
+        }
+        else{
+            frozen+= " "+player.getUuidAsString();
+            return 1;
+        }
     }
 }
