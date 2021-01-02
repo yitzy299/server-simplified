@@ -64,7 +64,7 @@ While in staff chat mode, all messages sent are sent to staff chat.
 Using `/staffchat` with arguments (e.g. `/staffchat Hello!`) will not toggle your staff chat mode, but send your message straight to staff chat.
 
 ## Permissions
-Every command has a permission bound to it. For all commands this is just the name of the command (e.g. `/heal`: `heal`)
+Every command has a permission bound to it. For all commands this is just the name of the command (e.g. `/heal`: `heal`). These permissions do not work for vanilla commands as of yet
 
 For staffchat, the `staffchat.view` permission will allow a player to view, but not send to [staff chat](#staff-chat).  
 Add the `kick` permission to allow a player to use vanilla's `kick` command  
