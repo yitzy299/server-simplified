@@ -34,7 +34,7 @@ public class MixinServerPlayNetworkHandler {
         } 
         else if (StaffChatCommand.isInStaffChat(player.getUuidAsString())&&!packet.getChatMessage().startsWith("/")) {
             String message = packet.getChatMessage();
-            StaffChatCommand.sendToStaffChat(StaffChatCommand.generateStaffChatMessage(player.getDisplayName().asString(), message), server);
+            StaffChatCommand.sendToStaffChat(StaffChatCommand.generateStaffChatMessage(player, message), server);
             info.cancel();
         }
         else if(ServerMuteCommand.isMuted()&&!Utils.hasPermission(player, "servermute")){

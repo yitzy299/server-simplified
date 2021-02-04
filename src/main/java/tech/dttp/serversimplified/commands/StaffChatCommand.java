@@ -6,6 +6,7 @@ import tech.dttp.serversimplified.ServerSimplified;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.command.argument.MessageArgumentType;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -35,7 +36,7 @@ public class StaffChatCommand {
                                         || commandSource.hasPermissionLevel(2))
                 .then(CommandManager.argument("message", MessageArgumentType.message())
                         .executes(context -> {
-                            sendToStaffChat(generateStaffChatMessage(isHuman(context.getSource()) ? context.getSource().getEntity().getDisplayName().asString() : "Console", MessageArgumentType.getMessage(context, "message").asString()), context.getSource().getMinecraftServer());
+                            sendToStaffChat(generateStaffChatMessage(isHuman(context.getSource()) ? context.getSource().getPlayer() : null, MessageArgumentType.getMessage(context, "message").asString()), context.getSource().getMinecraftServer());
                             return 1;
                         }))
                 .executes(context -> {
@@ -57,10 +58,17 @@ public class StaffChatCommand {
         dispatcher.register(builder);
     }
 
-    public static Text generateStaffChatMessage(String name, String message) {
+    public static Text generateStaffChatMessage(ServerPlayerEntity player, String message) {
         message = StringUtils.normalizeSpace(message);
-        Text originalMessage = new TranslatableText("chat.type.text", new Object[]{name, message});
+        Text originalMessage;
+        if(player==null) {
+            originalMessage = new TranslatableText("chat.type.text", new Object[]{"Server", message});
+        }
+        else {
+            originalMessage = new TranslatableText("chat.type.text", new Object[]{player.getName().asString(), message});
+        }
         Text newMessage = new LiteralText("[SC] ").formatted(Formatting.GOLD).append(originalMessage);
+        System.out.println(player.getName().asString());
         return newMessage;
     }
 
