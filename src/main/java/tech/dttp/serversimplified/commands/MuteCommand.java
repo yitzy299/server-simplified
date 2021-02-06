@@ -13,11 +13,9 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.BaseText;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class MuteCommand {
@@ -110,10 +108,10 @@ public class MuteCommand {
             String s1 = s.substring(0, index);
             s = s.substring(index+1);
             index = Integer.parseInt(s1);
-            return new Pair(index, s);
+            return new Pair<Integer, String>(index, s);
         }
 
-        return new Pair(0, s);
+        return new Pair<Integer, String>(0, s);
     }
 
     private static Duration parseTime(String formattedText) throws NumberFormatException {

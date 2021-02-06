@@ -37,6 +37,8 @@ public class Configuration {
             JsonObject object = new JsonParser().parse(jsonString).getAsJsonObject();
             JsonArray array = object.getAsJsonArray("permissions");
             JsonObject muted = object.getAsJsonObject("muted");
+            JsonObject settings = object.getAsJsonObject("settings");
+            ServerSimplified.settings = new Settings(settings);
             MuteCommand.fromJson(muted);
             return new Configuration(path, array);
         } catch (Exception e) {
@@ -57,6 +59,8 @@ public class Configuration {
 
         object.add("permissions", getPermissions().toJson());
         object.add("muted", MuteCommand.toJson());
+        object.add("settings", ServerSimplified.settings.toJson());
+        
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Files.write(origin, gson.toJson(object).getBytes());

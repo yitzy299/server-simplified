@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class ServerSimplified implements ModInitializer {
 
+    public static Settings settings;
     private static Configuration configuration;
     public static MinecraftServer server;
 

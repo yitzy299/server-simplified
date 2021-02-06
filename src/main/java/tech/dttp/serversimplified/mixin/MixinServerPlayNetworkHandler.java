@@ -9,7 +9,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
+import tech.dttp.serversimplified.ServerSimplified;
 import tech.dttp.serversimplified.Utils;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,7 +31,10 @@ public class MixinServerPlayNetworkHandler {
     @Inject(method = "onGameMessage", at = @At("HEAD"), cancellable = true)
     public void broadcastChatMessage(ChatMessageC2SPacket packet, CallbackInfo info) {
         if (MuteCommand.isMuted(player.getUuidAsString())&&!Utils.hasPermission(player, "mute")) {
-            player.sendSystemMessage(new LiteralText("You were muted! Could not send message, contact a moderator if you feel this is a mistake"), Util.NIL_UUID);
+            boolean sendMessages = ServerSimplified.settings.shouldSendMuteMessages();
+            if(sendMessages) {
+                player.sendSystemMessage(new LiteralText("You were muted! Could not send message, contact a moderator if you feel this is a mistake").formatted(Formatting.RED), Util.NIL_UUID);
+            }
             info.cancel();
         } 
         else if (StaffChatCommand.isInStaffChat(player.getUuidAsString())&&!packet.getChatMessage().startsWith("/")) {
@@ -39,7 +44,7 @@ public class MixinServerPlayNetworkHandler {
         }
         else if(ServerMuteCommand.isMuted()&&!Utils.hasPermission(player, "servermute")){
             String serverMuted = "The server has been muted, please contact the moderators to unmute";
-            Text serverIsMuted = new LiteralText(String.format("%s %s", "§4", serverMuted));
+            Text serverIsMuted = new LiteralText(serverMuted).formatted(Formatting.RED);
             player.sendSystemMessage(serverIsMuted, Util.NIL_UUID);
             info.cancel();
         }
