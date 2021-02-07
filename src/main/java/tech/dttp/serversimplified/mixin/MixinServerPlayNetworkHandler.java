@@ -11,7 +11,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
-import tech.dttp.serversimplified.ServerSimplified;
+import tech.dttp.serversimplified.Settings;
 import tech.dttp.serversimplified.Utils;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,7 +31,7 @@ public class MixinServerPlayNetworkHandler {
     @Inject(method = "onGameMessage", at = @At("HEAD"), cancellable = true)
     public void broadcastChatMessage(ChatMessageC2SPacket packet, CallbackInfo info) {
         if (MuteCommand.isMuted(player.getUuidAsString())&&!Utils.hasPermission(player, "mute")) {
-            boolean sendMessages = ServerSimplified.settings.shouldSendMuteMessages();
+            boolean sendMessages = Settings.shouldSendMuteMessages();
             if(sendMessages) {
                 player.sendSystemMessage(new LiteralText("You were muted! Could not send message, contact a moderator if you feel this is a mistake").formatted(Formatting.RED), Util.NIL_UUID);
             }

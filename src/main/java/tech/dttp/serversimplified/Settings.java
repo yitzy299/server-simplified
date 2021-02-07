@@ -3,19 +3,23 @@ package tech.dttp.serversimplified;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import tech.dttp.serversimplified.commands.MaintenanceModeCommand;
+
 public class Settings {
-    private boolean muteMessages = true;
-    public JsonElement toJson() {
+    private static boolean muteMessages = true;
+    public static boolean maintenance = false;
+    public static JsonElement toJson() {
         JsonObject object = new JsonObject();
-        JsonObject configObject = new JsonObject();
-        configObject.addProperty("mute_messages", true);
-        object.add("settings", configObject);
+        object.addProperty("mute_messages", true);
+        object.addProperty("maintenance_mode", MaintenanceModeCommand.isMaintenance());
         return object;
     }
-    public Settings(JsonObject object) {
-        this.muteMessages = object.get("mute_messages").getAsBoolean();
+    public static void parse(JsonObject object) {
+        muteMessages = object.get("mute_messages").getAsBoolean();
+        maintenance = object.get("maintenance_mode").getAsBoolean();
+        MaintenanceModeCommand.setMaintenanceMode(maintenance);
     }
-    public boolean shouldSendMuteMessages() {
-        return this.muteMessages;
+    public static boolean shouldSendMuteMessages() {
+        return muteMessages;
     }
 }

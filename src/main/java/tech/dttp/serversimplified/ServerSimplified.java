@@ -11,7 +11,6 @@ import java.io.IOException;
 
 public class ServerSimplified implements ModInitializer {
 
-    public static Settings settings;
     private static Configuration configuration;
     public static MinecraftServer server;
 
@@ -24,6 +23,7 @@ public class ServerSimplified implements ModInitializer {
             PlayerActionCommand.register(dispatcher, VanishCommand.class);
             ServerMuteCommand.register(dispatcher);
             StaffChatCommand.register(dispatcher);
+            MaintenanceModeCommand.register(dispatcher);
         });
         ServerLifecycleEvents.SERVER_STOPPING.register((server) -> {
             ServerSimplified.shutdown();
