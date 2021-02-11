@@ -10,7 +10,7 @@ public class Settings {
     public static boolean maintenance = false;
     public static JsonElement toJson() {
         JsonObject object = new JsonObject();
-        object.addProperty("mute_messages", true);
+        object.addProperty("mute_messages", muteMessages);
         object.addProperty("maintenance_mode", MaintenanceModeCommand.isMaintenance());
         return object;
     }
